@@ -69,7 +69,6 @@ class DFA:
     
     @F.setter
     def F(self, value: Set[Union[str, int]]) -> None:
-        self.__F = set()
         for val in value:
             if not val in self.Q:
                 raise KeyError("Invalid input")
