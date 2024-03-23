@@ -1,13 +1,12 @@
 from models import DFA
 
-#DFA accepts every string of {a, b} that starts with "abb"
+#DFA accepts every string of {a, b} that has substring "abb"
 if __name__ == '__main__':
-    obj = DFA(Q={'A', 'B', 'C', 'D', 'E'}, Sigma={'a', 'b'}, delta={
-        ('A', 'a'): 'B', ('A', 'b'): 'E',
-        ('B', 'a'): 'E', ('B', 'b'): 'C',
-        ('C', 'a'): 'E', ('C', 'b'): 'D',
-        ('D', 'a'): 'D', ('D', 'b'): 'D',
-        ('E', 'a'): 'E', ('E', 'b'): 'E'
+    obj = DFA(Q={'A', 'B', 'C', 'D'}, Sigma={'a', 'b'}, delta={
+        ('A', 'a'): 'B', ('A', 'b'): 'A',
+        ('B', 'a'): 'B', ('B', 'b'): 'C',
+        ('C', 'a'): 'B', ('C', 'b'): 'D',
+        ('D', 'a'): 'D', ('D', 'b'): 'D'
         }, q0='A', F={'D'})
 
     L = [

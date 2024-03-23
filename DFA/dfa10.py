@@ -1,14 +1,11 @@
 from models import DFA
 
-#DFA accepts every string of {a, b} that starts with "abb"
+#DFA accepts every string of {a, b} with an odd number of 'a'
 if __name__ == '__main__':
-    obj = DFA(Q={'A', 'B', 'C', 'D', 'E'}, Sigma={'a', 'b'}, delta={
-        ('A', 'a'): 'B', ('A', 'b'): 'E',
-        ('B', 'a'): 'E', ('B', 'b'): 'C',
-        ('C', 'a'): 'E', ('C', 'b'): 'D',
-        ('D', 'a'): 'D', ('D', 'b'): 'D',
-        ('E', 'a'): 'E', ('E', 'b'): 'E'
-        }, q0='A', F={'D'})
+    obj = DFA(Q={'A', 'B'}, Sigma={'a', 'b'}, delta={
+        ('A', 'a'): 'B', ('A', 'b'): 'A',
+        ('B', 'a'): 'A', ('B', 'b'): 'B'
+        }, q0='A', F={'B'})
 
     L = [
         'a', 'b', 'ab', 'ba', 'aab', 'abb', 'aba', 'baa', 'bba', 'bbb',
@@ -26,5 +23,6 @@ if __name__ == '__main__':
         'bbabaa', 'bbabab', 'bbabba', 'bbabbb', 'bbbaaa', 'bbbaab', 'bbabab', 'bbbabb', 'bbbbaa',
         'bbbbab', 'bbbbba', 'bbbbbb'
     ]
+    
     for strings in L:
         print(obj.run(strings))

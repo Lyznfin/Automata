@@ -1,15 +1,14 @@
 from models import DFA
 
-#DFA accepts every string of {a, b} that starts with "abb"
+#DFA accepts every string of {a, b} that has length divisible by 3
 if __name__ == '__main__':
-    obj = DFA(Q={'A', 'B', 'C', 'D', 'E'}, Sigma={'a', 'b'}, delta={
-        ('A', 'a'): 'B', ('A', 'b'): 'E',
-        ('B', 'a'): 'E', ('B', 'b'): 'C',
-        ('C', 'a'): 'E', ('C', 'b'): 'D',
-        ('D', 'a'): 'D', ('D', 'b'): 'D',
-        ('E', 'a'): 'E', ('E', 'b'): 'E'
-        }, q0='A', F={'D'})
+    obj = DFA(Q={'A', 'B', 'C'}, Sigma={'', 'a', 'b'}, delta={
+        ('A', 'a'): 'B', ('A', 'b'): 'B',
+        ('B', 'a'): 'C', ('B', 'b'): 'C',
+        ('C', 'a'): 'A', ('C', 'b'): 'A'
+        }, q0='A', F={'A'})
 
+    #technically, empty string is an NFA thing, but
     L = [
         'a', 'b', 'ab', 'ba', 'aab', 'abb', 'aba', 'baa', 'bba', 'bbb',
         'aaab', 'aabb', 'abaa', 'abba', 'abbb', 'baab', 'baba', 'babb', 'bbaa', 'bbab',

@@ -2,7 +2,7 @@ from typing import Set, Union
 import re
 
 def auth(sets: Set[Union[str, int]]) -> None:
-    pattern = r'^[a-zA-Z0-9]$'
+    pattern = r'^[a-zA-Z0-9]*$'
     for inp in sets:
         if not re.match(pattern, str(inp)):
             raise TypeError("Invalid input")
