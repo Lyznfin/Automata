@@ -35,7 +35,7 @@ class DFA:
         self.__Sigma = value
 
     @property
-    def delta(self) -> dict[tuple[Union[str, int]], Union[str, int]]:
+    def delta(self) -> dict[tuple[Union[str, int], Union[str, int]], Union[str, int]]:
         return self.__delta
     
     @delta.setter
