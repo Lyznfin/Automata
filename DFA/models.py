@@ -43,12 +43,12 @@ class DFA:
         keys: list[tuple[Union[str, int], Union[str, int]]] = value.keys()
         for key in keys:
             if not key[0] in self.Q or not key[1] in self.Sigma:
-                raise KeyError("Invalid transition function: keys")
+                raise KeyError("Invalid transition keys")
         
         values: Union[str, int] = value.values()
         for val in values:
             if not val in self.Q:
-                raise KeyError("Invalid transition function: values")
+                raise KeyError("Invalid transition values")
 
         self.__delta = value
 
@@ -76,9 +76,10 @@ class DFA:
 
     def run(self, L: str) -> Union[bool, None]:
         state = self.q0
+        is_int = isinstance(next(iter(self.delta.keys()))[1], int)
         for c in L:
             try:
-                state = self.delta[(state, c)]
+                state = self.delta[(state, c)] if not is_int else self.delta[(state, int(c))]
             except Exception:
                 # Why no raise? Because I no want program crash
                 # Crash makes sad, me no want sad :(
